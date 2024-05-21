@@ -1,0 +1,16 @@
+version: '3'
+services:
+  client:
+    build: ./frontend
+    network_mode: host
+    ports: 
+      - '3000:3000'
+  server: 
+    build: ./backend
+    network_mode: host
+    environment:
+      - PORT = 5000
+      - NODE_ENV=development
+      - MONGO_URI = mongodb+srv://palak23thakur:palak23thakur@cluster0.rwzjejx.mongodb.net/
+    ports:
+     - '5000:5000'
