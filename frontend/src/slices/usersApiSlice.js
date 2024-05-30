@@ -1,6 +1,6 @@
 import { USERS_URL } from '../constants.js'
 import { apiSlice } from './apiSlice.js'
-
+// adding and romvind data from cookie for the server
 export const usersApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation({
@@ -11,7 +11,22 @@ export const usersApiSlice = apiSlice.injectEndpoints({
       }),
       keepUnusedDataFor: 5,
     }),
+    register: builder.mutation({
+      query: (data) => ({
+        url: `${USERS_URL}`,
+        method: 'POST',
+        body: data,
+      }),
+    }),
+
+    logout: builder.mutation({
+      query: () => ({
+        url: `${USERS_URL}/logout`,
+        method: 'POST',
+      }),
+    }),
   }),
 })
 
-export const { useLoginMutation } = usersApiSlice
+export const { useLoginMutation, useLogoutMutation, useRegisterMutation } =
+  usersApiSlice
