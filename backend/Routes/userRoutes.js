@@ -8,9 +8,9 @@ import {
   getUserProfile,
   updateUserProfile,
   getUsers,
-  deleteUsers,
+  deleteUser,
   getUsersById,
-  updateUsers,
+  updateUser,
 } from '../controllers/userController.js'
 import { get } from 'mongoose'
 import { protect, admin } from '../middleware/authMiddleware.js'
@@ -23,8 +23,8 @@ router
   .put(protect, updateUserProfile)
 router
   .route('/:id')
-  .delete(protect, admin, deleteUsers)
+  .delete(protect, admin, deleteUser)
   .get(protect, admin, getUsersById)
-  .put(protect, admin, updateUsers)
+  .put(protect, admin, updateUser)
 
 export default router
